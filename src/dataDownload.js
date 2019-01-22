@@ -43,10 +43,16 @@ function createExcelWorkbook () {
 }
 
 function writeToExcelWorkbook(ws_name, data){
-    /* original data */                           
+    /* original data */       
     var ws = XLSX.utils.aoa_to_sheet(data); 
     /* add worksheet to workbook */
-    XLSX.utils.book_append_sheet(workbook, ws, ws_name);                           
+    /* catches all the worksheets that have names greater than 31 characters
+    try {
+        XLSX.utils.book_append_sheet(workbook, ws, ws_name);
+    }
+    catch (error) {
+        console.log (ws_name + " - " + error)
+    }                            
 }    
 
 function downloadExcelWorkbook (){
